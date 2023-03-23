@@ -1,9 +1,28 @@
 import random
-import config
+import botsecrets
+
+PROB_INITIAL = botsecrets.PROB_INITIAL
+PROB_STEP = botsecrets.PROB_STEP
+
+class Randomizer:
+    def __init__(self):
+        self.__probability_initial = PROB_INITIAL
+        self.__probability = self.__probability_initial
+        self.__step = PROB_STEP
+
+    def generate(self): 
+        rand = random.random()
+
+        result = rand <= self.__probability
+        
+        if result:
+            self.__probability = self.__probability_initial
+        else:
+            self.__probability += self.__step
+
+        return result
+    
+__randomizer = Randomizer()
 
 def is_need_to_send_message():
-	random_value = random.randint(0, config.REPLY_CHANCE)
-	if (random_value == 0):
-		return True
-	else:
-		return False
+    return __randomizer.generate()

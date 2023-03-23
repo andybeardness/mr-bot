@@ -1,9 +1,9 @@
 import telebot
-import secrets
+import botsecrets
 import randomizer
 import reply_manager
 
-bot = telebot.TeleBot(secrets.TOKEN, parse_mode=None)
+bot = telebot.TeleBot(botsecrets.TOKEN, parse_mode=None)
 
 CONTENT_TYPES = [
 	"text", 
