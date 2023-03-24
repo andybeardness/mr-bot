@@ -12,15 +12,15 @@ class Randomizer:
 
     def generate(self): 
         rand = random.random()
-
         result = rand <= self.__probability
-        
+        self.__update_randomizer_state(result=result)
+        return result
+    
+    def __update_randomizer_state(self, result):
         if result:
             self.__probability = self.__probability_initial
         else:
             self.__probability += self.__step
-
-        return result
     
 __randomizer = Randomizer()
 
